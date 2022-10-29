@@ -13,9 +13,14 @@ const Home = () => {
   return (
     <div>
       <button className="ui primary button">Show All</button>
-      <div>
-        {pokemons.map(({ name, url }) => (
-          <li key={url}>{name}</li>
+      <div class="container">
+        {pokemons.map((pokemon) => (
+          <div class="img-container">
+            <h2>Name: {pokemon.name}</h2>
+            <div class="img-item">
+              
+            </div>
+          </div>
         ))}
       </div>
       )

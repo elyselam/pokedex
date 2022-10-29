@@ -8,7 +8,7 @@ import CustomGallery from "./components/CustomGallery";
 
 const App = () => {
   return (
-    <div className="ui secondary pointing menu" style={{ "text-align": "center", padding: "10px" }}>
+    <div className="ui secondary pointing menu" style={{ "textAlign": "center", padding: "10px" }}>
       <Link to="/Home">
         <Home />
       </Link>

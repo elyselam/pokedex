@@ -1,0 +1,14 @@
+    .container {
+    display: flex;
+    flex-wrap: wrap;
+    text-align: center;
+    } 
+
+    .img-container {
+    border: dotted 2px black;
+    width: 300px;
+    height: 300px;
+    min-width: auto;
+    min-height: auto;
+    overflow: hidden;
+    }

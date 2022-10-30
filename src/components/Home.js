@@ -11,7 +11,9 @@ const Home = () => {
 
   }, []);
 
-
+  const getName = (pokemon) => {
+   return pokemon.name[0].toUpperCase() + pokemon.name.slice(1)
+  }
   const getID = (pokemon) => {
     let splitURL = pokemon.url.split("/");
     return splitURL[splitURL.length - 2];
@@ -23,12 +25,10 @@ const Home = () => {
       <div class="container">
         {pokemons.map((pokemon) => (
           <div class="img-container">
-            <h2>Name: {pokemon.name} </h2>
+            <h2>Name: {getName(pokemon)} </h2>
             <div class="img-item">
               <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(
-                  pokemon
-                )}.png`}
+                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(pokemon)}.png`}
               />
             </div>
           </div>
@@ -36,8 +36,6 @@ const Home = () => {
       </div>
     </div>
   );
-
-
 }
   
 export default Home;

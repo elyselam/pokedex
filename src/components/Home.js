@@ -5,13 +5,25 @@ import axios from "axios";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
-  useEffect(() => {
-    const fetchData = async () => {
-      const result = await axios("https://pokeapi.co/api/v2/pokemon?limit=10");
-      setPokemons(result.data);
-    };
-    fetchData();
-  }, []);
+    const [isLoading, setIsLoading] = useState(false);
+    const [isError, setIsError] = useState(false);
+
+    useEffect(() => {
+      const fetchData = async () => {
+        setIsError(false);
+        setIsLoading(true);
+        try {
+          const result = await axios(
+            "https://pokeapi.co/api/v2/pokemon?limit=10"
+          );
+          setPokemons(result.data);
+        } catch (error) {
+          setIsError(true);
+        }
+        setIsLoading(false);
+      };
+      fetchData();
+    }, []);
 
   const getName = (pokemon) => {
     return pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
@@ -25,8 +37,13 @@ const Home = () => {
   return (
     <div>
       <button className="ui primary button">Show All</button>
-      {pokemons.results &&
-        pokemons.results.map((pokemon) => <h2>{getName(pokemon)}</h2>)}
+      {isError && <div>Something went wrong ...</div>}
+      {isLoading ? (
+        <div>Loading ...</div>
+      ) : (
+        pokemons.results &&
+        pokemons.results.map((pokemon) => <h2>{getName(pokemon)}</h2>)
+      )}
     </div>
   );
 };

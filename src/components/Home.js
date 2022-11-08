@@ -1,41 +1,34 @@
 import React from "react";
 import { useState, useEffect } from "react";
 import './styles.css';
+import axios from "axios";
 
 const Home = () => {
   const [pokemons, setPokemons] = useState([]);
-  useEffect(async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon?limit=100");
-    const data = await response.json();
-    setPokemons(data.results);
-
+  useEffect(() => {
+    const fetchData = async () => {
+      const result = await axios("https://pokeapi.co/api/v2/pokemon?limit=10");
+      setPokemons(result.data);
+    };
+    fetchData();
   }, []);
 
   const getName = (pokemon) => {
-   return pokemon.name[0].toUpperCase() + pokemon.name.slice(1)
-  }
+    return pokemon.name[0].toUpperCase() + pokemon.name.slice(1);
+  };
   const getID = (pokemon) => {
     let splitURL = pokemon.url.split("/");
     return splitURL[splitURL.length - 2];
   };
+  console.warn("results: ", pokemons.results);
 
   return (
     <div>
       <button className="ui primary button">Show All</button>
-      <div class="container">
-        {pokemons.map((pokemon) => (
-          <div class="img-container">
-            <h2>Name: {getName(pokemon)} </h2>
-            <div class="img-item">
-              <img
-                src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${getID(pokemon)}.png`}
-              />
-            </div>
-          </div>
-        ))}
-      </div>
+      {pokemons.results &&
+        pokemons.results.map((pokemon) => <h2>{getName(pokemon)}</h2>)}
     </div>
   );
-}
+};
   
 export default Home;

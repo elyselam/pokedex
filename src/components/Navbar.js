@@ -1,8 +1,7 @@
-import { BrowserRouter, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Home from "./Home";
 import Modal from "./Modal";
 import CustomGallery from "./CustomGallery";
-
 
 const Navbar = () => {
   return (
@@ -10,7 +9,7 @@ const Navbar = () => {
       className="ui secondary pointing menu"
       style={{ textAlign: "center", padding: "10px" }}
     >
-      <Link to="/Home">
+      <Link to="/">
         <Home />
       </Link>
       <Link to="/Modal">

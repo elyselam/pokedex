@@ -9,9 +9,9 @@ function App() {
     <>
       <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/home" element={< Home/>} />
         <Route path="/Add" element={<Modal />} />
-        <Route path="/CustomGallery" element={<CustomGallery />} />
+        <Route path="/CustomGallery" element={<CustomGallery/>} />
       </Routes>
     </>
   );
